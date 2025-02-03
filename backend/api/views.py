@@ -1,8 +1,8 @@
 from rest_framework import viewsets
-from .models import Item
-from .serializers import ItemSerializer
+from .models import Invitation
+from .serializers import InvitationSerializer
 
 
-class ItemViewSet(viewsets.ModelViewSet):
-    queryset = Item.objects.all()
-    serializer_class = ItemSerializer
+class InvitationViewSet(viewsets.ModelViewSet):
+    queryset = Invitation.objects.all()
+    serializer_class = InvitationSerializer

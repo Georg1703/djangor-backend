@@ -2,6 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # Link to your API
+    path("admin/", admin.site.urls),
+    path("api/", include("api.urls")),  # Link to your API
 ]

@@ -1,26 +1,16 @@
 import os
+from os.path import join
 
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(join(BASE_DIR.parent, ".env"), override=True)
 
-load_dotenv()
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "fallback_default_key")
-
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
-
 ALLOWED_HOSTS: list[str] = os.getenv("ALLOWED_HOSTS", "").split(",")
-
-
-# Application definition
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -112,7 +102,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
+STATIC_ROOT = f"{BASE_DIR.parent}/static"
 STATIC_URL = "static/"
 
 # Default primary key field type
