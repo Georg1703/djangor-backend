@@ -16,6 +16,7 @@ uwsgi = "^2.0.28"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.9.4"
+pre-commit = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
