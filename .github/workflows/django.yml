@@ -7,13 +7,34 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  lint:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-22.04
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.13]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"  # Use a stable version
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "export PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+
+      - name: Install Dependencies
+        run: |
+          poetry install --no-root  # Install only the dependencies (not the package)
+
+      - name: Run Ruff Linter
+        run: |
+          poetry run ruff check .  # Run Ruff on the entire codebase
+
+  build:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repository
