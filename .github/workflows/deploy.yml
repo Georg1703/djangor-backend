@@ -3,17 +3,11 @@ name: Django CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
-
+    if: github.event_name == 'push'
     runs-on: ubuntu-22.04
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.13]
 
     steps:
       - name: Checkout Repository
