@@ -18,6 +18,23 @@ uwsgi = "^2.0.28"
 ruff = "^0.9.4"
 pre-commit = "^4.1.0"
 
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+exclude = ["**/migrations/*.py"]
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "I", "UP", "DJ", "N", "S", "B", "A", "C4", "T20", "TID",
+]
+ignore = [
+    "DJ001"
+]
+
+[tool.ruff.format]
+quote-style = "single"
+
 [build-system]
 requires = ["poetry-core"]
+
 build-backend = "poetry.core.masonry.api"
